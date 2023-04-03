@@ -257,5 +257,33 @@ public class RationalTest {
         assertEquals("Product of numbers calculated incorrectly", resultNumber, firstNumber.multiply(secondNumber));
     }
 
+    @Test
+    public void testDivide() {
+        Rational firstNumber = new Rational(2, 3);
+        Rational secondNumber = new Rational(3, 4);
+        Rational resultNumber = new Rational(8, 9);
+        assertEquals("Division of numbers calculated incorrectly", resultNumber, firstNumber.divide(secondNumber));
+        firstNumber = new Rational(-3, 14);
+        secondNumber = new Rational(-2, 9);
+        resultNumber = new Rational(27, 28);
+        assertEquals("Division of numbers calculated incorrectly", resultNumber, firstNumber.divide(secondNumber));
+        firstNumber = new Rational(21, 13);
+        secondNumber = new Rational(-1, 2);
+        resultNumber = new Rational(-42, 13);
+        assertEquals("Division of numbers calculated incorrectly", resultNumber, firstNumber.divide(secondNumber));
+        firstNumber = new Rational(-18, 23);
+        secondNumber = new Rational(2, 3);
+        resultNumber = new Rational(-27, 23);
+        assertEquals("Division of numbers calculated incorrectly", resultNumber, firstNumber.divide(secondNumber));
+        firstNumber = new Rational();
+        secondNumber = new Rational(3, 7);
+        resultNumber = new Rational(0, 1);
+        assertEquals("Division of numbers calculated incorrectly", resultNumber, firstNumber.divide(secondNumber));
+        firstNumber = new Rational(0, 7);
+        secondNumber = new Rational(-2, 5);
+        resultNumber = new Rational(0, 1);
+        assertEquals("Division of numbers calculated incorrectly", resultNumber, firstNumber.divide(secondNumber));
+    }
+
 
 }
