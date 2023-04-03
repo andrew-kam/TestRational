@@ -1,9 +1,9 @@
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class RationalTest {
 
-//    Блок проверок конструктора класса
     @Test
     public void testDefaultConstructor() {
         Rational defaultNumber = new Rational();
@@ -15,10 +15,12 @@ public class RationalTest {
     public void testConstructorWithZeroDenominatorAndPositiveNominator() {
         new Rational(1, 0);
     }
+
     @Test(expected = ArithmeticException.class)
     public void testConstructorWithZeroDenominatorAndNegativeNominator() {
-       new Rational(-1, 0);
+        new Rational(-1, 0);
     }
+
     @Test(expected = ArithmeticException.class)
     public void testConstructorWithZeroDenominatorAndZeroNominator() {
         new Rational(0, 0);
@@ -74,7 +76,6 @@ public class RationalTest {
         assertEquals("Constructor returns wrong denominator", 2, rationalNumber.getDenominator());
     }
 
-//    Блок проверок сравнений
     @Test
     public void testEquals() {
         Rational firstNumber = new Rational(3, 4);
@@ -172,7 +173,6 @@ public class RationalTest {
         assertTrue("Not less or equal", thirdNumber.lessOrEqual(secondNumber));
     }
 
-//    Блок математических операций
     @Test
     public void testPlus() {
         Rational firstNumber = new Rational(1, 6);
@@ -285,5 +285,24 @@ public class RationalTest {
         assertEquals("Division of numbers calculated incorrectly", resultNumber, firstNumber.divide(secondNumber));
     }
 
+    @Test(expected = ArithmeticException.class)
+    public void testDividePositiveByZero() {
+        Rational firstNumber = new Rational(2, 3);
+        Rational secondNumber = new Rational(0, -4);
+        firstNumber.divide(secondNumber);
+    }
 
+    @Test(expected = ArithmeticException.class)
+    public void testDivideNegativeByZero() {
+        Rational firstNumber = new Rational(-2, 121);
+        Rational secondNumber = new Rational(0, 17);
+        firstNumber.divide(secondNumber);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testDivideZeroByZero() {
+        Rational firstNumber = new Rational();
+        Rational secondNumber = new Rational(0, -4);
+        firstNumber.divide(secondNumber);
+    }
 }
