@@ -172,6 +172,7 @@ public class RationalTest {
         assertTrue("Not less or equal", thirdNumber.lessOrEqual(secondNumber));
     }
 
+//    Блок математических операций
     @Test
     public void testPlus() {
         Rational firstNumber = new Rational(1, 6);
@@ -200,6 +201,33 @@ public class RationalTest {
         assertEquals("Sum calculated incorrectly", resultNumber, firstNumber.plus(secondNumber));
     }
 
+    @Test
+    public void testMinus() {
+        Rational firstNumber = new Rational(2, 3);
+        Rational secondNumber = new Rational(13, 15);
+        Rational resultNumber = new Rational(-1, 5);
+        assertEquals("Difference calculated incorrectly", resultNumber, firstNumber.minus(secondNumber));
+        firstNumber = new Rational(-2, 6);
+        secondNumber = new Rational(-1, 3);
+        resultNumber = new Rational(0, 1);
+        assertEquals("Difference calculated incorrectly", resultNumber, firstNumber.minus(secondNumber));
+        firstNumber = new Rational(-2, 8);
+        secondNumber = new Rational(1, 4);
+        resultNumber = new Rational(-1, 2);
+        assertEquals("Difference calculated incorrectly", resultNumber, firstNumber.minus(secondNumber));
+        firstNumber = new Rational(7, 13);
+        secondNumber = new Rational();
+        resultNumber = new Rational(7, 13);
+        assertEquals("Difference calculated incorrectly", resultNumber, firstNumber.minus(secondNumber));
+        firstNumber = new Rational(0, 5);
+        secondNumber = new Rational(2, -3);
+        resultNumber = new Rational(2, 3);
+        assertEquals("Difference calculated incorrectly", resultNumber, firstNumber.minus(secondNumber));
+        firstNumber = new Rational(0, -4);
+        secondNumber = new Rational(0, 5);
+        resultNumber = new Rational(0, 1);
+        assertEquals("Difference calculated incorrectly", resultNumber, firstNumber.minus(secondNumber));
+    }
 
 
 
