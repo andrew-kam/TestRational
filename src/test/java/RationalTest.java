@@ -13,15 +13,15 @@ public class RationalTest {
 
     @Test(expected = ArithmeticException.class)
     public void testConstructorWithZeroDenominatorAndPositiveNominator() {
-        Rational rationalNumber = new Rational(1, 0);
+        new Rational(1, 0);
     }
     @Test(expected = ArithmeticException.class)
     public void testConstructorWithZeroDenominatorAndNegativeNominator() {
-       Rational rationalNumber = new Rational(-1, 0);
+       new Rational(-1, 0);
     }
     @Test(expected = ArithmeticException.class)
     public void testConstructorWithZeroDenominatorAndZeroNominator() {
-        Rational rationalNumber = new Rational(0, 0);
+        new Rational(0, 0);
     }
 
     @Test
