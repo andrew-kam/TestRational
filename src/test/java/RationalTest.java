@@ -229,6 +229,33 @@ public class RationalTest {
         assertEquals("Difference calculated incorrectly", resultNumber, firstNumber.minus(secondNumber));
     }
 
+    @Test
+    public void testMultiply() {
+        Rational firstNumber = new Rational(2, 3);
+        Rational secondNumber = new Rational(3, 4);
+        Rational resultNumber = new Rational(1, 2);
+        assertEquals("Product of numbers calculated incorrectly", resultNumber, firstNumber.multiply(secondNumber));
+        firstNumber = new Rational(-3, 14);
+        secondNumber = new Rational(-2, 5);
+        resultNumber = new Rational(3, 35);
+        assertEquals("Product of numbers calculated incorrectly", resultNumber, firstNumber.multiply(secondNumber));
+        firstNumber = new Rational(4, 25);
+        secondNumber = new Rational(-7, 18);
+        resultNumber = new Rational(-14, 225);
+        assertEquals("Product of numbers calculated incorrectly", resultNumber, firstNumber.multiply(secondNumber));
+        firstNumber = new Rational(7, 22);
+        secondNumber = new Rational(0, 5);
+        resultNumber = new Rational(0, 1);
+        assertEquals("Product of numbers calculated incorrectly", resultNumber, firstNumber.multiply(secondNumber));
+        firstNumber = new Rational(-13, 28);
+        secondNumber = new Rational();
+        resultNumber = new Rational(0, 1);
+        assertEquals("Product of numbers calculated incorrectly", resultNumber, firstNumber.multiply(secondNumber));
+        firstNumber = new Rational();
+        secondNumber = new Rational(0, 100);
+        resultNumber = new Rational(0, 1);
+        assertEquals("Product of numbers calculated incorrectly", resultNumber, firstNumber.multiply(secondNumber));
+    }
 
 
 }
