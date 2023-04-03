@@ -233,4 +233,20 @@ public class RationalTest {
         Rational secondNumber = new Rational(0, -4);
         firstNumber.divide(secondNumber);
     }
+
+    @Test
+    public void multiFunctions() {
+        Rational firstNumber = new Rational(1, 3);
+        Rational secondNumber = new Rational(-1, 5);
+        Rational thirdNumber = new Rational(5, 6);
+        Rational fourthNumber = new Rational(9, 4);
+        Rational resultNumber = new Rational(-8, 85);
+        assertEquals("Result wrong", resultNumber, (
+                firstNumber.plus(secondNumber)).divide(thirdNumber.minus(fourthNumber))
+        );
+        resultNumber = new Rational(-41, 40);
+        assertEquals("Result wrong", resultNumber, (
+                firstNumber.minus(thirdNumber)).multiply(secondNumber.plus(fourthNumber))
+        );
+    }
 }
