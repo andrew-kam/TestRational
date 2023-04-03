@@ -172,4 +172,35 @@ public class RationalTest {
         assertTrue("Not less or equal", thirdNumber.lessOrEqual(secondNumber));
     }
 
+    @Test
+    public void testPlus() {
+        Rational firstNumber = new Rational(1, 6);
+        Rational secondNumber = new Rational(1, 2);
+        Rational resultNumber = new Rational(2, 3);
+        assertEquals("Sum calculated incorrectly", resultNumber, firstNumber.plus(secondNumber));
+        firstNumber = new Rational(-5, 3);
+        secondNumber = new Rational(-3, 8);
+        resultNumber = new Rational(-49, 24);
+        assertEquals("Sum calculated incorrectly", resultNumber, firstNumber.plus(secondNumber));
+        firstNumber = new Rational(5, 6);
+        secondNumber = new Rational(-1, 8);
+        resultNumber = new Rational(17, 24);
+        assertEquals("Sum calculated incorrectly", resultNumber, firstNumber.plus(secondNumber));
+        firstNumber = new Rational(13, 6);
+        secondNumber = new Rational(0, -5);
+        resultNumber = new Rational(13, 6);
+        assertEquals("Sum calculated incorrectly", resultNumber, firstNumber.plus(secondNumber));
+        firstNumber = new Rational(-2, 5);
+        secondNumber = new Rational();
+        resultNumber = new Rational(-2, 5);
+        assertEquals("Sum calculated incorrectly", resultNumber, firstNumber.plus(secondNumber));
+        firstNumber = new Rational(0, 6);
+        secondNumber = new Rational(0, -3);
+        resultNumber = new Rational(0, 1);
+        assertEquals("Sum calculated incorrectly", resultNumber, firstNumber.plus(secondNumber));
+    }
+
+
+
+
 }
