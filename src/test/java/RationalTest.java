@@ -74,7 +74,26 @@ public class RationalTest {
         assertEquals("Constructor returns wrong denominator", 2, rationalNumber.getDenominator());
     }
 
-
-
+//    Блок проверок сравнений
+    @Test
+    public void testEquals() {
+        Rational firstNumber = new Rational(3, 4);
+        Rational secondNumber = new Rational(6, 8);
+        Rational thirdNumber = new Rational(2, 3);
+        assertEquals("Not equivalent", firstNumber, secondNumber);
+        assertNotEquals("Equivalent but should not be", secondNumber, thirdNumber);
+        firstNumber = new Rational(-5, 3);
+        secondNumber = new Rational(-15, 9);
+        thirdNumber = new Rational(-3, 4);
+        assertEquals("Not equivalent", firstNumber, secondNumber);
+        assertNotEquals("Equivalent but should not be", secondNumber, thirdNumber);
+        firstNumber = new Rational();
+        secondNumber = new Rational(0, -123);
+        thirdNumber = new Rational(-8, 7);
+        Rational fourthNumber = new Rational(2, 3);
+        assertEquals("Not equivalent", firstNumber, secondNumber);
+        assertNotEquals("Equivalent but should not be", secondNumber, thirdNumber);
+        assertNotEquals("Equivalent but should not be", firstNumber, fourthNumber);
+    }
 
 }
