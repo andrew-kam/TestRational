@@ -109,21 +109,60 @@ public class ComparisonTests {
     }
 
     @Test
-    public void testLessOrEqualPositive() {
+    public void testLessOrEqualPositiveWithSameDenominators() {
         Rational firstNumber = new Rational(1, 3);
         Rational secondNumber = new Rational(3, 9);
-        Rational thirdNumber = new Rational(12, 5);
+        Rational thirdNumber = new Rational(2, 3);
         assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
         assertTrue("Not less or equal", firstNumber.lessOrEqual(thirdNumber));
     }
 
     @Test
-    public void testLessOrEqualNegative() {
-        Rational firstNumber = new Rational(-6, 8);
-        Rational secondNumber = new Rational(-3, 4);
-        Rational thirdNumber = new Rational(-1, 2);
+    public void testLessOrEqualPositiveWithSameNumerators() {
+        Rational firstNumber = new Rational(2, 3);
+        Rational secondNumber = new Rational(4, 6);
+        Rational thirdNumber = new Rational(2, 1);
         assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
         assertTrue("Not less or equal", firstNumber.lessOrEqual(thirdNumber));
+    }
+
+    @Test
+    public void testLessOrEqualPositive() {
+        Rational firstNumber = new Rational(3, 9);
+        Rational secondNumber = new Rational(12, 5);
+        assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
+    }
+
+    @Test
+    public void testLessOrEqualNegativeWithSameDenominators() {
+        Rational firstNumber = new Rational(-6, 8);
+        Rational secondNumber = new Rational(-3, 4);
+        Rational thirdNumber = new Rational(-1, 4);
+        assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
+        assertTrue("Not less or equal", firstNumber.lessOrEqual(thirdNumber));
+    }
+
+    @Test
+    public void testLessOrEqualNegativeWithSameNumerators() {
+        Rational firstNumber = new Rational(-8, 6);
+        Rational secondNumber = new Rational(-4, 3);
+        Rational thirdNumber = new Rational(-16, 4);
+        assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
+        assertTrue("Not less or equal", thirdNumber.lessOrEqual(firstNumber));
+    }
+
+    @Test
+    public void testLessOrEqualNegative() {
+        Rational firstNumber = new Rational(-6, 8);
+        Rational secondNumber = new Rational(-1, 2);
+        assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
+    }
+
+    @Test
+    public void testLessOrEqualNegativeAndPositiveNumbersWithSameDenominators() {
+        Rational firstNumber = new Rational(-5, 11);
+        Rational secondNumber = new Rational(3, 11);
+        assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
     }
 
     @Test
@@ -134,13 +173,23 @@ public class ComparisonTests {
     }
 
     @Test
-    public void testLessOrEqualWithZero() {
+    public void testLessOrEqualZeroWithZero() {
         Rational firstNumber = new Rational(0, -5);
         Rational secondNumber = new Rational();
-        Rational thirdNumber = new Rational(-7, 19);
-        Rational fourthNumber = new Rational(4, 7);
         assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
-        assertTrue("Not less or equal", firstNumber.lessOrEqual(fourthNumber));
-        assertTrue("Not less or equal", thirdNumber.lessOrEqual(secondNumber));
+    }
+
+    @Test
+    public void testLessOrEqualZeroWithPositive() {
+        Rational firstNumber = new Rational(0, -5);
+        Rational secondNumber = new Rational(4, 7);
+        assertTrue("Not less or equal", firstNumber.lessOrEqual(secondNumber));
+    }
+
+    @Test
+    public void testLessOrEqualZeroWithNegative() {
+        Rational firstNumber = new Rational();
+        Rational secondNumber = new Rational(-7, 19);
+        assertTrue("Not less or equal", secondNumber.lessOrEqual(firstNumber));
     }
 }
