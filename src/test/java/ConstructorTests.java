@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ConstructorTest {
+public class ConstructorTests {
 
     @Test
     public void testDefaultConstructor() {
