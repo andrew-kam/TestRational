@@ -1,10 +1,10 @@
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.Rule;
-import static org.junit.Assert.*;
 import org.junit.rules.ExpectedException;
 
 public class ConstructorTests {
-
     @Test
     public void testDefaultConstructor() {
         Rational defaultNumber = new Rational();
