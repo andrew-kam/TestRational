@@ -1,6 +1,7 @@
 import org.junit.Test;
-
+import org.junit.Rule;
 import static org.junit.Assert.*;
+import org.junit.rules.ExpectedException;
 
 public class ConstructorTests {
 
@@ -11,18 +12,27 @@ public class ConstructorTests {
         assertEquals("Standard constructor returns wrong denominator", 1, defaultNumber.getDenominator());
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
     public void testConstructorWithZeroDenominatorAndPositiveNominator() {
+        thrown.expect(ArithmeticException.class);
+        thrown.expectMessage("division by zero !");
         new Rational(1, 0);
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test
     public void testConstructorWithZeroDenominatorAndNegativeNominator() {
+        thrown.expect(ArithmeticException.class);
+        thrown.expectMessage("division by zero !");
         new Rational(-1, 0);
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test
     public void testConstructorWithZeroDenominatorAndZeroNominator() {
+        thrown.expect(ArithmeticException.class);
+        thrown.expectMessage("division by zero !");
         new Rational(0, 0);
     }
 
@@ -31,6 +41,7 @@ public class ConstructorTests {
         Rational rationalNumber = new Rational(1, 1);
         assertEquals("Constructor returns wrong numerator", 1, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 1, rationalNumber.getDenominator());
+
         rationalNumber = new Rational(-2147483648, 2147483647);
         assertEquals("Constructor returns wrong numerator", -2147483648, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 2147483647, rationalNumber.getDenominator());
@@ -41,6 +52,7 @@ public class ConstructorTests {
         Rational rationalNumber = new Rational(0, 21);
         assertEquals("Constructor returns wrong numerator", 0, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 1, rationalNumber.getDenominator());
+
         rationalNumber = new Rational(0, -37);
         assertEquals("Constructor returns wrong numerator", 0, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 1, rationalNumber.getDenominator());
@@ -51,6 +63,7 @@ public class ConstructorTests {
         Rational rationalNumber = new Rational(2147483647, -1);
         assertEquals("Constructor returns wrong numerator", -2147483647, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 1, rationalNumber.getDenominator());
+
         rationalNumber = new Rational(-1, -2147483647);
         assertEquals("Constructor returns wrong numerator", 1, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 2147483647, rationalNumber.getDenominator());
@@ -61,6 +74,7 @@ public class ConstructorTests {
         Rational rationalNumber = new Rational(-52, 91);
         assertEquals("Constructor returns wrong numerator", -4, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 7, rationalNumber.getDenominator());
+
         rationalNumber = new Rational(20, 12);
         assertEquals("Constructor returns wrong numerator", 5, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 3, rationalNumber.getDenominator());
@@ -71,6 +85,7 @@ public class ConstructorTests {
         Rational rationalNumber = new Rational(7, -21);
         assertEquals("Constructor returns wrong numerator", -1, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 3, rationalNumber.getDenominator());
+
         rationalNumber = new Rational(-12, -8);
         assertEquals("Constructor returns wrong numerator", 3, rationalNumber.getNumerator());
         assertEquals("Constructor returns wrong denominator", 2, rationalNumber.getDenominator());
