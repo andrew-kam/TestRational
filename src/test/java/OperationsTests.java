@@ -1,7 +1,8 @@
-import org.junit.Test;
-
 import static org.junit.Assert.*;
 
+import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 public class OperationsTests {
 
@@ -137,24 +138,36 @@ public class OperationsTests {
         assertEquals("Division of numbers calculated incorrectly", resultNumber, firstNumber.divide(secondNumber));
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
     public void testDividePositiveByZero() {
         Rational firstNumber = new Rational(2, 3);
         Rational secondNumber = new Rational(0, -4);
+
+        thrown.expect(ArithmeticException.class);
+        thrown.expectMessage("division by zero !");
         firstNumber.divide(secondNumber);
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test
     public void testDivideNegativeByZero() {
         Rational firstNumber = new Rational(-2, 121);
         Rational secondNumber = new Rational(0, 17);
+
+        thrown.expect(ArithmeticException.class);
+        thrown.expectMessage("division by zero !");
         firstNumber.divide(secondNumber);
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test
     public void testDivideZeroByZero() {
         Rational firstNumber = new Rational();
         Rational secondNumber = new Rational(0, -4);
+
+        thrown.expect(ArithmeticException.class);
+        thrown.expectMessage("division by zero !");
         firstNumber.divide(secondNumber);
     }
 
@@ -165,11 +178,13 @@ public class OperationsTests {
         Rational thirdNumber = new Rational(5, 6);
         Rational fourthNumber = new Rational(9, 4);
         Rational resultNumber = new Rational(-8, 85);
+
         assertEquals("Result wrong", resultNumber, (
                 firstNumber.plus(secondNumber)).divide(thirdNumber.minus(fourthNumber))
         );
 
         resultNumber = new Rational(-41, 40);
+
         assertEquals("Result wrong", resultNumber, (
                 firstNumber.minus(thirdNumber)).multiply(secondNumber.plus(fourthNumber))
         );
