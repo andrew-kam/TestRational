@@ -1,9 +1,9 @@
-import org.junit.Test;
-
 import static org.junit.Assert.*;
 
+import org.junit.Test;
+
 public class ComparisonTests {
-//
+
     @Test
     public void testEquals() {
         Rational firstNumber = new Rational(3, 4);
@@ -11,11 +11,17 @@ public class ComparisonTests {
         Rational thirdNumber = new Rational(2, 3);
         assertEquals("Not equivalent", firstNumber, secondNumber);
         assertNotEquals("Equivalent but should not be", secondNumber, thirdNumber);
+
         firstNumber = new Rational(-5, 3);
         secondNumber = new Rational(-15, 9);
         thirdNumber = new Rational(-3, 4);
         assertEquals("Not equivalent", firstNumber, secondNumber);
         assertNotEquals("Equivalent but should not be", secondNumber, thirdNumber);
+
+        firstNumber = new Rational(9, 7);
+        secondNumber = new Rational(9, -7);
+        assertNotEquals("Equivalent but should not be", firstNumber, secondNumber);
+
         firstNumber = new Rational();
         secondNumber = new Rational(0, -123);
         thirdNumber = new Rational(-8, 7);
@@ -26,25 +32,52 @@ public class ComparisonTests {
     }
 
     @Test
-    public void testLessPositiveNumbers() {
+    public void testLessPositiveNumbersWithSameDenominators() {
         Rational firstNumber = new Rational(1, 5);
         Rational secondNumber = new Rational(2, 5);
-        Rational thirdNumber = new Rational(2, 3);
-        Rational fourthNumber = new Rational(8, 7);
         assertTrue("Not less", firstNumber.less(secondNumber));
-        assertFalse("Less but should not be", thirdNumber.less(secondNumber));
-        assertTrue("Not less", thirdNumber.less(fourthNumber));
+    }
+
+    @Test
+    public void testLessPositiveNumbersWithSameNumerators() {
+        Rational firstNumber = new Rational(2, 5);
+        Rational secondNumber = new Rational(2, 3);
+        assertFalse("Less but should not be", secondNumber.less(firstNumber));
+    }
+
+    @Test
+    public void testLessPositiveNumbers() {
+        Rational firstNumber = new Rational(2, 3);
+        Rational secondNumber = new Rational(8, 7);
+        assertTrue("Not less", firstNumber.less(secondNumber));
+    }
+
+    @Test
+    public void testLessNegativeNumbersWithSameDenominators() {
+        Rational firstNumber = new Rational(-5, 7);
+        Rational secondNumber = new Rational(-3, 7);
+        assertTrue("Not less", firstNumber.less(secondNumber));
+    }
+
+    @Test
+    public void testLessNegativeNumbersWithSameNumerators() {
+        Rational firstNumber = new Rational(-3, 7);
+        Rational secondNumber = new Rational(-3, 4);
+        assertTrue("Not less", secondNumber.less(firstNumber));
     }
 
     @Test
     public void testLessNegativeNumbers() {
-        Rational firstNumber = new Rational(-5, 7);
-        Rational secondNumber = new Rational(-3, 7);
-        Rational thirdNumber = new Rational(-3, 4);
-        Rational fourthNumber = new Rational(-1, 3);
+        Rational firstNumber = new Rational(-3, 4);
+        Rational secondNumber = new Rational(-1, 3);
         assertTrue("Not less", firstNumber.less(secondNumber));
-        assertFalse("Less but should not be", thirdNumber.less(secondNumber));
-        assertTrue("Not less", thirdNumber.less(fourthNumber));
+    }
+
+    @Test
+    public void testLessNegativeAndPositiveNumbersWithSameDenominators() {
+        Rational firstNumber = new Rational(-6, 7);
+        Rational secondNumber = new Rational(2, 7);
+        assertTrue("Not less", firstNumber.less(secondNumber));
     }
 
     @Test
@@ -55,14 +88,24 @@ public class ComparisonTests {
     }
 
     @Test
-    public void testLessWithZero() {
+    public void testLessZeroWithZero() {
         Rational firstNumber = new Rational(0, 11);
         Rational secondNumber = new Rational();
-        Rational thirdNumber = new Rational(-6, 11);
-        Rational fourthNumber = new Rational(2, 7);
         assertFalse("Less but should not be", firstNumber.less(secondNumber));
-        assertTrue("Not less", firstNumber.less(fourthNumber));
-        assertTrue("Not less", thirdNumber.less(secondNumber));
+    }
+
+    @Test
+    public void testLessZeroWithPositive() {
+        Rational firstNumber = new Rational(0, 11);
+        Rational secondNumber = new Rational(2, 7);
+        assertTrue("Not less", firstNumber.less(secondNumber));
+    }
+
+    @Test
+    public void testLessZeroWithNegative() {
+        Rational firstNumber = new Rational(-6, 11);
+        Rational secondNumber = new Rational();
+        assertTrue("Not less", firstNumber.less(secondNumber));
     }
 
     @Test
